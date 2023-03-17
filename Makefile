@@ -11,3 +11,6 @@ apply-k8s:
 
 delete-k8s:
 	kubectl delete -f k8s
+
+port-forward: 
+	kubectl port-forward svc/go-http-app-service 8000:80

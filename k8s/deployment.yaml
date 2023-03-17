@@ -17,5 +17,5 @@ spec:
     spec: 
       containers:
         - name: go-http-app
-          image: wesleywillians/hello-go:v2
+          image: wesleywillians/hello-go:v3
 
