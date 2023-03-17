@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: go-http-app-replicaset
+  labels:
+    app: go-http-app
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: backend
+  template:
+    metadata:
+      labels:
+        tier: backend
+    spec: 
+      containers:
+        - name: go-http-app
+          image: wesleywillians/hello-go:latest
+
