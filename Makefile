@@ -28,3 +28,11 @@ install-metrics-components:
 	kubectl wait --namespace kube-system \
     --for=condition=available deployment/metrics-server \
     --timeout=60s
+
+stress-test-fortio:
+	kubectl run -it fortio --rm --image=fortio/fortio -- load \
+		-qps 800 \
+		-t 120s \
+		-c 70 \
+		"http://go-http-app-service/healthz"
+
