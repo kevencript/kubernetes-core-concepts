@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-http-app-env
+data:
+  NAME: "Gabriel Costa"
+  AGE: "36"

@@ -15,6 +15,8 @@ delete:
 redeploy:
 	$(MAKE) delete
 	$(MAKE) deploy
+	sleep 3
+	$(MAKE) port-forward
 
 port-forward: 
 	kubectl port-forward svc/go-http-app-service 8000:80
