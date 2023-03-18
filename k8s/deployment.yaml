@@ -18,14 +18,17 @@ spec:
       containers:
         - name: go-http-app
           image: wesleywillians/hello-go:v4 # This image have the fields "NAME" & "AGE"
-          env:
-            - name: NAME
-              valueFrom:
-                configMapKeyRef:
-                  key: NAME
-                  name: go-http-app-env
-            - name: AGE
-              valueFrom:
-                configMapKeyRef:
-                  key: AGE
-                  name: go-http-app-env
+          envFrom:
+            - configMapRef:
+                name: go-http-app-env
+          # env:
+          #   - name: NAME
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         key: NAME
+          #         name: go-http-app-env
+          #   - name: AGE
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         key: AGE
+          #         name: go-http-app-env
