@@ -8,6 +8,8 @@ create-kind-cluster:
 
 deploy:
 	kubectl apply -f k8s
+	sleep 3
+	$(MAKE) port-forward
 
 delete:
 	kubectl delete -f k8s
