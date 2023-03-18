@@ -18,6 +18,14 @@ spec:
       containers:
         - name: go-http-app
           image: wesleywillians/hello-go:v5.5 # Probe on port /healthz (+ readiness check: if app is up < 10s it will fail. This way, readiness will only be "ready" when the pod is healthy)
+          resources:
+            requests:
+              cpu: "0.03"
+              memory: 20Mi
+            limits:
+              cpu: "0.035"
+              memory: 25Mi
+          
           startupProbe: # This will BLOCK the readiness and liveness until the StartupProbe is done
             httpGet: 
               path: /healthz 
