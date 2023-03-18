@@ -17,10 +17,12 @@ spec:
     spec: 
       containers:
         - name: go-http-app
-          image: wesleywillians/hello-go:v5 # This image have the fields "NAME" & "AGE" & a file injection on myfamily/family.txt
+          image: wesleywillians/hello-go:v5.2 # This image have the fields "NAME" & "AGE" & a file injection on myfamily/family.txt
           envFrom:
             - configMapRef:
                 name: go-http-app-env
+            - secretRef:
+                name: secret-app
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: file-injection
