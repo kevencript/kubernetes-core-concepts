@@ -6,11 +6,15 @@ create-kind-cluster:
 	kind create cluster --config kind-config.yaml --name $(NAMESPACE)
 	kind export kubeconfig --name $(NAMESPACE)
 
-apply-k8s:
+deploy:
 	kubectl apply -f k8s
 
-delete-k8s:
+delete:
 	kubectl delete -f k8s
+
+redeploy:
+	$(MAKE) delete
+	$(MAKE) deploy
 
 port-forward: 
 	kubectl port-forward svc/go-http-app-service 8000:80
