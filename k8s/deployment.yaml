@@ -30,10 +30,6 @@ spec:
               path: /healthz 
               port: 8000 # Should be the CONTAINER port
             periodSeconds: 3 
-            failureThreshold: 1 
-            timeoutSeconds: 1 
-            successThreshold: 1 
-            initialDelaySeconds: 8 # How much time it will wait untill start to check (In our example, the app takes 10s to start)
       
           livenessProbe:
             httpGet: # HTTP strategy (or container command or tcp connection)
@@ -41,10 +37,6 @@ spec:
               port: 8000 # Should be the CONTAINER port
             periodSeconds: 5 # Liveness check frequecy
             failureThreshold: 2 # How many times must to fail until be consider as failed
-            timeoutSeconds: 1 # How long the liveness req can wait untill timeout 
-            successThreshold: 1 # How many times must to success until be consider as health
-            initialDelaySeconds: 8 
-          
 
           envFrom:
             - configMapRef:
