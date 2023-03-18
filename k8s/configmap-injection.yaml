@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-app-injection
+data:
+  config: |
+    Gabriel, Fulano, Ciclano
+
+    Here we can pass multiple types of files/variables. For now,
+    i am applying this text with the members of my family.txt
