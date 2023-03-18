@@ -9,7 +9,6 @@ create-kind-cluster:
 
 deploy:
 	kubectl apply -f k8s
-	sleep 3
 	$(MAKE) port-forward
 
 delete:
@@ -18,14 +17,14 @@ delete:
 redeploy:
 	$(MAKE) delete
 	$(MAKE) deploy
-	sleep 3
 	$(MAKE) port-forward
 
 port-forward: 
+	sleep 4
 	kubectl port-forward svc/go-http-app-service 8000:80
 
 install-metrics-components:
 	kubectl apply -f k8s/metrics-server.yaml
 	kubectl wait --namespace kube-system \
     --for=condition=available deployment/metrics-server \
-    --timeout=200s
+    --timeout=60s
