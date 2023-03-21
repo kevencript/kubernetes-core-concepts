@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-example
+spec:
+  selector:
+    matchLabels:
+      tier: database
+  serviceName: mysql-headless
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        tier: database
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+          name: mysql
+        env:
+          - name: MYSQL_DATABASE
+            value: db-example
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-root-password
+                key: password
+        volumeMounts:
+          - mountPath: "/var/lib/mysql"
+            name: mysql-persistence
+
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-persistence
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 3Gi
