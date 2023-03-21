@@ -1,7 +1,7 @@
 # Kubernetes Shortcuts
 deploy-from-scratch:
 	$(MAKE) create-kind-cluster
-	$(MAKE) apply-k8s
+	$(MAKE) deploy
 
 create-kind-cluster:
 	kind create cluster --config ./k8s/kind/kind-config.yaml --name k8s-concepts
@@ -11,7 +11,6 @@ create-kind-cluster:
 
 deploy:
 	kubectl apply -f k8s
-	$(MAKE) port-forward
 
 delete:
 	kubectl delete -f k8s
@@ -19,10 +18,8 @@ delete:
 redeploy:
 	$(MAKE) delete
 	$(MAKE) deploy
-	$(MAKE) port-forward
 
 port-forward: 
-	sleep 4
 	kubectl port-forward svc/go-http-app-service 8000:80
 
 # Dependecies Installing
