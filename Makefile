@@ -1,4 +1,4 @@
-# Kubernetes Shortcuts
+# Cluster Creation
 deploy-from-scratch:
 	$(MAKE) create-kind-cluster
 	$(MAKE) deploy
@@ -13,6 +13,7 @@ create-kind-cluster:
 	$(MAKE) install-ingress-controller
 	$(MAKE) install-cert-manager
 
+# Kubernetes Shortcuts
 deploy:
 	kubectl apply -f k8s/namespaces.yaml
 	kubectl apply -f k8s
