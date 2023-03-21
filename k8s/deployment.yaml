@@ -53,10 +53,15 @@ spec:
             - secretRef:
                 name: secret-app
           volumeMounts:
+            # Generic example of File Injection
             - mountPath: "/go/myfamily"
               name: file-injection
+            # Generic example of Persistent Volume
             - mountPath: "/go/persistence"
               name: persistent-volume
+            # Here we inject a script to test ServiceAccount (Access to k8s API->LIST_PODS)
+            - mountPath: "/go/test-serviceaccount"
+              name: inject-test-api-k8s-script
       volumes:
         - name: persistent-volume
           persistentVolumeClaim:
@@ -67,3 +72,9 @@ spec:
             items:
               - key: config
                 path: family.txt
+        - name: inject-test-api-k8s-script
+          configMap:
+            name: test-api-k8s-script
+            items:
+              - key: script
+                path: test-k8s-api-access.sh

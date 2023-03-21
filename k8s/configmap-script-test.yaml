@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-api-k8s-script
+  namespace: server
+data:
+  script: |
+    #!/bin/sh
+
+    # TESTING ACCESS FROM POD TO K8S APISERVER:
+    # with this script we can check if the pod can list pods via k8s api.
+    # We are doing this to validate the ServiceAccounts
+
+    # Export the internal Kubernetes API server hostname
+    APISERVER=https://kubernetes.default.svc
+
+    # Export the path to ServiceAccount mount directory
+    SERVICEACCOUNT=/var/run/secrets/kubernetes.io/serviceaccount
+
+    # Read the ServiceAccount bearer token
+    TOKEN=$(cat ${SERVICEACCOUNT}/token)
+
+    # Reference the internal Kubernetes certificate authority (CA)
+    CACERT=${SERVICEACCOUNT}/ca.crt
+
+    # Make a call to the Kubernetes API with TOKEN
+    echo "ACTION1: Trying to list PODS from Kubernetes Api:"
+    curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/default/pods
+    
