@@ -82,3 +82,11 @@ stress-test-fortio:
 		-c 70 \
 		"http://go-http-app-service/healthz"
 
+# Testing 
+test-serviceaccount-pod-list: # This tests the ServiceAccount from namespace "server" (via injected script)
+	$(MAKE) server-context
+	kubectl exec -it \
+		$$(kubectl get po -o name | head -n 1) \
+	-- bash test-serviceaccount/test-k8s-api-access.sh
+	
+
