@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
+  namespace: server
   annotations:
     # Define which ingress class this manifest will use
     kubernetes.io/ingress.class: "nginx"
