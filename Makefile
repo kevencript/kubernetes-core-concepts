@@ -32,6 +32,8 @@ install-metrics-components:
 install-ingress-controller:
 	helm install ingress-nginx ingress-nginx/ingress-nginx --namespace nginx --create-namespace
 
+install-cert-manager:
+	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
 
 # Stress Tests
 stress-test-fortio:
