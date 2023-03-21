@@ -23,7 +23,21 @@ data:
     # Reference the internal Kubernetes certificate authority (CA)
     CACERT=${SERVICEACCOUNT}/ca.crt
 
-    # Make a call to the Kubernetes API with TOKEN
-    echo "ACTION1: Trying to list PODS from Kubernetes Api:"
-    curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/default/pods
+    echo "======================================================="
+    echo "< ====== STARTING DENIED CALL (List Pods) ====== >"
+    echo "======================================================="
+
+    # Make a call to the Kubernetes API to get PODS 
+    echo "-> ACTION 1: PODS listing from Kubernetes Api (NOT Allowed): -----------------------------------------"
+    curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/server/pods
+    echo "-X END ----------------------------------------------------------------------------------"
     
+    echo "======================================================="
+    echo "< ====== STARTING ALLOWED CALL (List Services) ====== >"
+    echo "======================================================="
+
+    # Make a call to the Kubernetes API to get SERVICES 
+    echo "-> ACTION 2: SERVICES listing from Kubernetes Api (Allowed): -----------------------------------------"
+    curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET ${APISERVER}/api/v1/namespaces/server/services
+    echo "-X END ----------------------------------------------------------------------------------"
+    echo " "
