@@ -3,13 +3,18 @@ deploy-from-scratch:
 	$(MAKE) create-kind-cluster
 	$(MAKE) deploy
 
+delete-from-scratch:
+	kind delete cluster -n k8s-concepts
+
 create-kind-cluster:
 	kind create cluster --config ./k8s/kind/kind-config.yaml --name k8s-concepts
 	kind export kubeconfig --name k8s-concepts
 	$(MAKE) install-metrics-components
 	$(MAKE) install-ingress-controller
+	$(MAKE) install-cert-manager
 
 deploy:
+	kubectl apply -f k8s/namespaces.yaml
 	kubectl apply -f k8s
 
 delete:
@@ -25,9 +30,6 @@ port-forward:
 # Dependecies Installing
 install-metrics-components:
 	kubectl apply -f k8s/metrics-server.yaml
-	kubectl wait --namespace kube-system \
-    --for=condition=available deployment/metrics-server \
-    --timeout=60s
 
 install-ingress-controller:
 	helm install ingress-nginx ingress-nginx/ingress-nginx --namespace nginx --create-namespace
