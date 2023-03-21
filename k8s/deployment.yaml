@@ -16,6 +16,7 @@ spec:
       labels:
         tier: backend
     spec: 
+      serviceAccountName: server-service-account # Here we allow SERVICE LISTING (Testing ServiceAccount purposes)
       containers:
         - name: go-http-app
           image: wesleywillians/hello-go:v9.6 
