@@ -13,7 +13,7 @@ spec:
 
     # Storage for the ACME account private key
     privateKeySecretRef:
-      name: tls-example-letsencrypt
+      name: tls-example-letsencrypt # used on ingress.yaml, on tls configs
 
     # Solvers for ACME challenges
     # OBS: the solvers field under the acme configuration specifies 
