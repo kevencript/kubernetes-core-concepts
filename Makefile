@@ -3,8 +3,8 @@ deploy-from-scratch:
 	$(MAKE) apply-k8s
 
 create-kind-cluster:
-	kind create cluster --config kind-config.yaml --name $(NAMESPACE)
-	kind export kubeconfig --name $(NAMESPACE)
+	kind create cluster --config ./k8s/kind/kind-config.yaml --name k8s-concepts
+	kind export kubeconfig --name k8s-concepts
 	$(MAKE) install-metrics-components
 
 deploy:

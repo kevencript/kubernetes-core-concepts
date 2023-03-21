@@ -48,13 +48,18 @@ spec:
 
           envFrom:
             - configMapRef:
-                name: go-http-app-env
+                name: configmap-app-env
             - secretRef:
                 name: secret-app
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: file-injection
+            - mountPath: "/go/persistence"
+              name: persistent-volume
       volumes:
+        - name: persistent-volume
+          persistentVolumeClaim:
+            claimName: example-pvc
         - name: file-injection
           configMap:
             name: configmap-app-injection
