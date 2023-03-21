@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-example
+  namespace: cert-manager
+spec:
+  acme:
+    # Let's Encrypt ACME server address
+    server: https://acme-v02.api.letsencrypt.org/directory
+
+    # Email used to register your ACME account with Let's Encrypt
+    email: example@gabriel.com
+
+    # Storage for the ACME account private key
+    privateKeySecretRef:
+      name: tls-example-letsencrypt
+
+    # Solvers for ACME challenges
+    # OBS: the solvers field under the acme configuration specifies 
+    # the methods used by Cert-Manager to complete the ACME challenges 
+    # required for issuing certificates from Let's Encrypt.
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
