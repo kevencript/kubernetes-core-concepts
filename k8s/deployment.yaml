@@ -54,7 +54,12 @@ spec:
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: file-injection
+            - mountPath: "/go/persistence"
+              name: persistent-volume
       volumes:
+        - name: persistent-volume
+          persistentVolumeClaim:
+            claimName: default-pvc
         - name: file-injection
           configMap:
             name: configmap-app-injection
