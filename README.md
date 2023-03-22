@@ -43,27 +43,27 @@ kind create cluster --config kind-config.yaml --name $(NAMESPACE)
 
 ---
 
-## 2 - Pods
+## 2 - Pods 🌱
 
 In Kubernetes (K8s), a pod is the smallest and most basic unit in the K8s object model. A pod represents a single instance of a running process in a cluster and typically contains one or more containers that work closely together to deliver a specific function or part of an application.
 
 ---
 
-## 3 - Replicasets
+## 3 - Replicasets 📈
 
 A ReplicaSet in Kubernetes is a higher-level abstraction over pods that ensures a specified number of replicas of a pod are running at any given time. In simple terms, a ReplicaSet ensures that a certain number of identical pod instances are running, and if any of those instances fail or are terminated, the ReplicaSet will create new ones to maintain the desired count.
 > Related commit: [feat: ✨ Replicasets: higher-level abstraction over pods](https://github.com/kevencript/kubernetes-core-concepts/commit/1a75e1b4b18d8333fcbcd027ca28d306d896ae10)
 
 ---
 
-## 4 - Deployments
+## 4 - Deployments 🚀
 
 A Deployment in Kubernetes is a resource that manages the desired state, scaling, and updates of ReplicaSets and their associated pods, ensuring the continuous availability and stability of applications.
 
 > Related commit [feat: ✨ Deployments: Manages the desired state, scaling, and updates of ReplicaSets
 ](https://github.com/kevencript/kubernetes-core-concepts/commit/cc1da121c015b3ea4ea9fa8cd3c93936d0750d69)
 
-## 5 - Services 
+## 5 - Services 🛡️
 "Service" in the context of Kubernetes (often abbreviated as "k8s" for convenience) refers to an abstraction that represents a set of pods that perform a similar function and provide a consistent endpoint for client applications to access them.
 
 #### 5.1 - Port and TargetPort
@@ -101,7 +101,7 @@ A load balancer is a networking component that distributes incoming traffic acro
 
 ---
 
-## 6 - Config Objects
+## 6 - Config Objects 🔧
 
 #### 6.1 Environment Variables
 In Kubernetes deployments, environment variables enable flexible application configuration within containers. They help decouple applications from infrastructure, making them more portable and easily managed through the deployment manifest, without modifying the container image.
@@ -119,7 +119,7 @@ Kubernetes Secrets are secure objects used to store sensitive data, such as pass
 
 ---
 
-## 7 - Probes
+## 7 - Probes 🔍
 "Probes" in Kubernetes (often abbreviated as "k8s" for convenience) refer to a mechanism that allows you to determine the health of a container running inside a pod. Kubernetes provides three types of probes:
 
 #### 7.1 - Liveness
@@ -138,7 +138,7 @@ A startup probe in Kubernetes is a mechanism to determine if a container has suc
 
 ---
 
-## 8 - Horizontal Pod Autoscaling (HPA) 
+## 8 - Horizontal Pod Autoscaling (HPA) 💻
 
 #### 8.1 - Install Metrics Server
 The Metrics Server is a crucial Kubernetes component that collects and stores resource usage metrics such as CPU and memory for nodes and pods within a cluster. It enables efficient resource management, autoscaling, and basic monitoring, helping to ensure that applications scale according to performance demands and making it easier to identify issues.
@@ -156,7 +156,7 @@ Horizontal Pod Autoscaling (HPA) is a Kubernetes feature that automatically adju
 
 ---
 
-## 9 - Statefulsets and Persistence
+## 9 - Statefulsets and Persistence 💾
 
 #### 9.1 - Persistent Volume: Claim
 A Persistent Volume Claim (PVC) is a Kubernetes resource that allows users to request and consume storage from available Persistent Volumes in the cluster, providing an abstraction layer and efficient storage management for containerized applications.
@@ -169,18 +169,18 @@ A StatefulSet is a Kubernetes resource used to manage stateful applications, ens
 
 ---
 
-#### 10 - Ingress
+## 10 - Ingress 🚪
 The NGINX Ingress Controller is a popular implementation of the Kubernetes Ingress concept, which provides external access to cluster services by routing incoming HTTP/HTTPS traffic to the appropriate backend services. By leveraging the power of the NGINX reverse proxy and load balancer, the Ingress Controller efficiently manages traffic and allows for custom routing rules and annotations. This enables developers to effectively expose and secure their applications within a Kubernetes cluster, while adhering to best practices for scalability and high availability
 * > Related commit: [feat: ➕ Ingress: Install Nginx](https://github.com/kevencript/kubernetes-core-concepts/commit/96097d461273cb8e9416540040813d497b5192ce)
 * > Related commit: [feat: ✨ Ingress: Nginx ingress](https://github.com/kevencript/kubernetes-core-concepts/commit/5b3888d2935320025ace1202146952e10b430f63)
 
 --- 
 
-## 11 - CertManager & TLS
+## 11 - CertManager & TLS 📜
 
 #### 11.1 - CertManager
 Cert Manager is a Kubernetes-native certificate management solution that automates the issuance, renewal, and management of SSL/TLS certificates for your applications. By integrating with various certificate authorities (CAs) such as Let's Encrypt or self-signed certificates, Cert Manager ensures secure communication between clients and services within a Kubernetes cluster. This simplifies certificate lifecycle management and helps maintain security best practices, allowing developers to focus on building and deploying their applications with confidence.
-* > Related commit: [feat: ✨ Cert-Manager: Install](https://github.com/kevencript/kubernetes-core-concepts/commit/6a5757b28d17ac393f4715bab21f21404413357c)
+> Related commit: [feat: ✨ Cert-Manager: Install](https://github.com/kevencript/kubernetes-core-concepts/commit/6a5757b28d17ac393f4715bab21f21404413357c)
 
 #### 11.2 Adding a ClusterIssuer
 A ClusterIssuer is a Kubernetes resource used by Cert-Manager to define a Certificate Authority (CA) for issuing SSL/TLS certificates across the entire cluster. It is a cluster-wide variant of the namespaced Issuer resource. ClusterIssuers streamline certificate management by allowing a single resource to provide certificates to applications in different namespaces, enabling consistent and centralized certificate lifecycle management. By integrating with various CAs, such as Let's Encrypt or by utilizing self-signed certificates, ClusterIssuers ensure that applications within the Kubernetes cluster can secure their communications with clients, promoting best practices for security and reliability.
@@ -191,9 +191,170 @@ A ClusterIssuer is a Kubernetes resource used by Cert-Manager to define a Certif
 The TLS settings in this file ensure secure communication (HTTPS) between clients and the cluster by leveraging Let's Encrypt as the certificate issuer. We define the "secretName" as the generated secret from ClusterIssuer (cert-manager). We are using an example DNS, this means that the certificate will be issued, but not generated (since the example DNS is not configured to point to our k8s external ip)
 > Related commit: [feat: ✨ TLS: Adapt Ingress to TLS configs](https://github.com/kevencript/kubernetes-core-concepts/commit/15d1afe9c0e514e5aee8e9f758bcb788f09c8922)
 
-# to use
-> Related commit: []()
-> Related commit: []()
-> Related commit: []()
+---
+ 
+## 12 - Namespace & K8s context 🏢
+In Kubernetes, namespaces provide a logical separation of resources, allowing you to manage and organize your workloads more effectively while maintaining a clear boundary between different projects or teams.
+
+#### 12.1 - Creating Namespaces
+* > Related commit: [feat: ✨ Creating the cluster's namespaces](https://github.com/kevencript/kubernetes-core-concepts/commit/4fcf9f16e0c4d58d33a202653b4782b19d87b1bb)
+* > Related commit: [feat: ✨ Namespace: Defining namespace for each manifest](https://github.com/kevencript/kubernetes-core-concepts/commit/c7be60e1b773856fadf1f27a7597e5bc58decf20)
+
+#### 12.2 Context based on Namespace
+Utilize context on Kubernetes to seamlessly switch between multiple clusters or namespaces, enabling increased productivity and streamlined management of diverse environments. For this example, i create a Makefile automation to create the config-contexts based on namespaces (server and database for our example) and three others in order to use database, server ou default context.
+> Related commit: [feat: ✨ Namespace: Using K8s Conext based in Namespace](https://github.com/kevencript/kubernetes-core-concepts/commit/aa5e2d904f42183fe5870288e657772f98a37aec)
+
+---
+
+## 13 - Service Account 👥
+In Kubernetes, a service account is an identity that is used by pods and other resources in a cluster to authenticate with the Kubernetes API server and to access other cluster resources.
+
+#### 13.1 Creating Auth Role (to list services on `server` namespace)
+In Kubernetes, a Role is a set of permissions that defines what actions can be performed on specific resources in a namespace. A Role can be associated with a ServiceAccount, which allows Pods that use that ServiceAccount to perform the actions defined by the Role.  A Role consists of a set of rules that specify which API groups, resources, and verbs the Role can access. For example, a Role might allow read-only access to Pods and ConfigMaps, but not allow write access to Secrets.  Roles are namespace-specific, meaning that they only apply to resources within a specific namespace. This allows you to control which resources can be accessed by Pods associated with a specific ServiceAccount within a given namespace.
+> Related commit: [feat: ✨ ServiceAccount: Creating Auth Role (list services on server ns)](https://github.com/kevencript/kubernetes-core-concepts/commit/d6493a18dc049020d0730ab02aa51135d80cd1d9)
+
+#### 13.2 Add Role Binding
+RoleBinding is a way to bind a Role to a user, group, or ServiceAccount within a namespace. A RoleBinding grants the permissions defined in a Role to the entity associated with the RoleBinding.  A RoleBinding consists of two parts: the Role that defines the permissions, and the subject that defines the entity to which the permissions are granted. The subject can be a user, group, or ServiceAccount.
+> Related commit: [feat: ✨ ServiceAccount: Added Role Binding](https://github.com/kevencript/kubernetes-core-concepts/commit/9f1a54bfadcda2d3847173b563c57e3c0122370d)
+
+#### 13.3 Defining the Svc Account on Deployment
+Now that we identified the serviceAccountName into the Deployment, that means that all the pods from that deployment will have the server-service-account permissions based on namespace. For now, if we run "make test-serviceaccount-pod-list", we will see the tests working and returning the service list from our k8s API (allowed by the svc account).
+> Related commit: [feat: ✨ ServiceAccount: Defining the Svc Account on Deployment](https://github.com/kevencript/kubernetes-core-concepts/commit/69291a5eddbbc64041ec78fc2df8c9bc5d8af56c)
+
+### 13.4 Testing the Service Account 🧪🔬
+
+#### 13.4.1 Inject script to test Service Account
+Here we have a simple script injection into our Go app in order to do a CURL requisition to local K8S Api from within the Pod. This will be important to validate that if we can access it when ServiceAccount its added.
+* > Related commit: [test: ⚗️ ServiceAccount: Inject script to test k8s API access (curl)](https://github.com/kevencript/kubernetes-core-concepts/commit/4fcfd79ad26203ae212146226a06bd70815ac6e7)
+* > Related commit: [feat: 🔨 Makefile step to execute the injected script within server pod automatically](https://github.com/kevencript/kubernetes-core-concepts/commit/5d44a2ee40e0d07d1eb7d0211b6bd673563c936d). Use `make test-serviceaccount-pod-list` to test
+
+#### 13.4.2 Adapt the Script for our test
+Here we define exactly how the command should behave and what conclusions we can get. The first part of the script will be testing if the pods with namespace "server" can access the K8S API in order to list Pods (expected: not allowed). The second part of it will check if the "server" pods can access the Service listing from k8s API (expected: Allowed)
+> Related commit: [feat: ♻️ ServiceAccount: Refactor the SvcAcc test script](https://github.com/kevencript/kubernetes-core-concepts/commit/a9af69371f190bdf8b25f9cd314f92c623414fc4)
+
+#### 13.4.3 Executing the test
+The first part of the script will be testing if the pods with namespace "server" can access the K8S API in order to list Pods (expected: not allowed). The second part of it will check if the "server" pods can access the Service listing from k8s API (expected: Allowed)
+
+Make Command:
+```sh
+make test-serviceaccount-pod-list
+```
+
+Expected result:
+```sh
+=======================================================
+< ====== STARTING DENIED CALL (List Pods) ====== >
+=======================================================
+-> ACTION 1: PODS listing from Kubernetes Api (NOT Allowed): -----------------------------------------
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "pods is forbidden: User \"system:serviceaccount:server:server-service-account\" cannot list resource \"pods\" in API group \"\" in the namespace \"server\"",
+  "reason": "Forbidden",
+  "details": {
+    "kind": "pods"
+  },
+  "code": 403
+}-X END ----------------------------------------------------------------------------------
+=======================================================
+< ====== STARTING ALLOWED CALL (List Services) ====== >
+=======================================================
+-> ACTION 2: SERVICES listing from Kubernetes Api (Allowed): -----------------------------------------
+{
+  "kind": "ServiceList",
+  "apiVersion": "v1",
+  "metadata": {
+    "resourceVersion": "1876"
+  },
+  "items": [
+    {
+      "metadata": {
+        "name": "go-http-app-service",
+        "namespace": "server",
+        "uid": "c20d0531-7ab0-4354-b6f5-8f2bc9dff8d3",
+        "resourceVersion": "1071",
+        "creationTimestamp": "2023-03-22T15:27:20Z",
+        "labels": {
+          "app": "go-http-app",
+          "tier": "backend"
+        },
+        "annotations": {
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"go-http-app\",\"tier\":\"backend\"},\"name\":\"go-http-app-service\",\"namespace\":\"server\"},\"spec\":{\"ports\":[{\"name\":\"go-http-app-backend\",\"port\":80,\"protocol\":\"TCP\",\"targetPort\":8000}],\"selector\":{\"tier\":\"backend\"},\"type\":\"ClusterIP\"}}\n"
+        },
+        "managedFields": [
+          {
+            "manager": "kubectl-client-side-apply",
+            "operation": "Update",
+            "apiVersion": "v1",
+            "time": "2023-03-22T15:27:20Z",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": {
+              "f:metadata": {
+                "f:annotations": {
+                  ".": {},
+                  "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                },
+                "f:labels": {
+                  ".": {},
+                  "f:app": {},
+                  "f:tier": {}
+                }
+              },
+              "f:spec": {
+                "f:internalTrafficPolicy": {},
+                "f:ports": {
+                  ".": {},
+                  "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                    ".": {},
+                    "f:name": {},
+                    "f:port": {},
+                    "f:protocol": {},
+                    "f:targetPort": {}
+                  }
+                },
+                "f:selector": {},
+                "f:sessionAffinity": {},
+                "f:type": {}
+              }
+            }
+          }
+        ]
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "go-http-app-backend",
+            "protocol": "TCP",
+            "port": 80,
+            "targetPort": 8000
+          }
+        ],
+        "selector": {
+          "tier": "backend"
+        },
+        "clusterIP": "10.96.250.10",
+        "clusterIPs": [
+          "10.96.250.10"
+        ],
+        "type": "ClusterIP",
+        "sessionAffinity": "None",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "internalTrafficPolicy": "Cluster"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    }
+  ]
+}-X END ----------------------------------------------------------------------------------
+```
+
+
+
 
 
