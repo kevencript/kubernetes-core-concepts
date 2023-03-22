@@ -63,6 +63,8 @@ A Deployment in Kubernetes is a resource that manages the desired state, scaling
 > Related commit [feat: ✨ Deployments: Manages the desired state, scaling, and updates of ReplicaSets
 ](https://github.com/kevencript/kubernetes-core-concepts/commit/cc1da121c015b3ea4ea9fa8cd3c93936d0750d69)
 
+---
+
 ## 5 - Services 🛡️
 "Service" in the context of Kubernetes (often abbreviated as "k8s" for convenience) refers to an abstraction that represents a set of pods that perform a similar function and provide a consistent endpoint for client applications to access them.
 
@@ -98,6 +100,16 @@ A load balancer is a networking component that distributes incoming traffic acro
    type: LoadBalancer
 ```
 > Example Commit: [feat: ✨ Services: LoadBalancer](https://github.com/kevencript/kubernetes-core-concepts/commit/3b5e85f8e50d414c0d6716acd9420af97c5858f6)
+
+#### 5.4 ClusterIP
+ClusterIP is a type of Service in Kubernetes that exposes the service on a cluster-internal IP address. This IP address is only accessible within the cluster and can be used by other services or pods in the cluster to access the service. When you create a Service with a ClusterIP, Kubernetes assigns a stable IP address to the service, which allows other services to communicate with it without having to know the IP address of the underlying pods.
+```yaml
+  port: 80
+     targetPort: 8000
+     protocol: TCP
+   type: NodePort
+   type: ClusterIP
+```
 
 ---
 
